@@ -26,6 +26,7 @@
         "no-extra-semi": "error",
         "semi": "off",
         "newline-before-return": "off",
-        "space-before-function-paren": "off"
+        "space-before-function-paren": "off",
+        "standard/no-callback-literal": "off"
     }
 }
