@@ -16,16 +16,8 @@ function showPrompt(html, callback) {
   promptFormContainer.style.display = originalDisplaySetting;
   const coverDiv = document.createElement("div");
   coverDiv.id = "cover-div";
-  coverDiv.style.position = "fixed";
-  coverDiv.style.zIndex = "9000";
-  coverDiv.style.top = "0";
-  coverDiv.style.left = "0";
-  coverDiv.style.width = "100%";
-  coverDiv.style.height = "100%";
-  coverDiv.style.backgroundColor = "gray";
-  coverDiv.style.opacity = "0.3";
-  document.body.style.overfow = "hidden";
-  promptFormContainer.insertAdjacentElement("beforebegin", coverDiv);
+  document.body.append(coverDiv);
+  coverDiv.style.overflowY = "hidden";
 
   const promptForm = document.getElementById("prompt-form");
 
@@ -35,7 +27,7 @@ function showPrompt(html, callback) {
   const promptMessage = document.getElementById("prompt-message");
   promptMessage.innerHTML = html;
 
-  const cancelButton = promptForm.querySelectorAll("input")[2];
+  const cancelButton = promptForm.elements[promptForm.elements.length - 1];
 
   promptForm.addEventListener("submit", event => {
     event.preventDefault();
@@ -56,18 +48,6 @@ function showPrompt(html, callback) {
 
       coverDiv.remove();
       promptFormContainer.style.display = "none";
-    }
-  });
-
-  cancelButton.addEventListener("keydown", event => {
-    if (event.key === "Tab" && !event.shiftKey) {
-      cancelButton.focus();
-    }
-  })
-
-  textInput.addEventListener("keydown", event => {
-    if (event.key === "Tab" && !event.shiftKey) {
-      textInput.focus();
     }
   });
 
